@@ -11,7 +11,7 @@ use OpenApi\Annotations as OA;
  *     in="path",
  *     required=true,
  *     @OA\Schema(
- *         type="string"
+ *         type="int"
  *     ),
  * )
  */
