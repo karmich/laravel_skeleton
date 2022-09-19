@@ -1,0 +1,37 @@
+version: "2"
+
+services:
+    app:
+        image: php:8.1-apache
+        build:
+            context: ./docker/app
+            dockerfile: Dockerfile
+            args:
+                user: user
+                uid: 1000
+        working_dir: /var/www/html
+        volumes:
+            - ./:/var/www/html
+            - ./docker/apache2/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
+        networks:
+            - net
+        # ports:
+        #     - '80:80'
+
+    db:
+        image: mysql:8.0.30
+        volumes:
+            - ./docker/mysql/data:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_DATABASE: ${DB_DATABASE}
+        command: --sql_mode=""
+        networks:
+            - net
+        # ports:
+        #     - '3306:3306'
+        # restart: unless-stopped
+
+networks:
+    net:
+        driver: bridge
