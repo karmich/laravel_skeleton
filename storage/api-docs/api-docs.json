@@ -11,6 +11,23 @@
         }
     ],
     "paths": {
+        "/api/users/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id_in_path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
         "/api/users": {
             "get": {
                 "tags": [
@@ -25,6 +42,16 @@
         }
     },
     "components": {
+        "parameters": {
+            "id_in_path": {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            }
+        },
         "securitySchemes": {
             "Bearer": {
                 "type": "apiKey",
