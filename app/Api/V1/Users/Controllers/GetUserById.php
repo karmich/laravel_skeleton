@@ -8,7 +8,7 @@ use OpenApi\Annotations as OA;
 
 /**
  * @OA\Get(
- *     path="/api/users/{id}",
+ *     path="/api/v1/users/{id}",
  *     tags={"Users"},
  *     @OA\Parameter(ref="#/components/parameters/id_in_path"),
  *     @OA\Response(
