@@ -197,8 +197,8 @@ return [
 
 
 
-        App\Domain\Users\Providers\RouteServiceProvider::class,
-        App\Domain\Users\Providers\MigrationsServiceProvider::class,
+        \App\Api\V1\Users\Providers\RouteServiceProvider::class,
+        \App\Api\V1\Users\Providers\MigrationsServiceProvider::class,
     ],
 
     /*
