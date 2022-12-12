@@ -11,7 +11,7 @@
         }
     ],
     "paths": {
-        "/api/users/{id}": {
+        "/api/v1/users/{id}": {
             "get": {
                 "tags": [
                     "Users"
@@ -28,7 +28,7 @@
                 }
             }
         },
-        "/api/users": {
+        "/api/v1/users": {
             "get": {
                 "tags": [
                     "Users"
@@ -48,7 +48,7 @@
                 "in": "path",
                 "required": true,
                 "schema": {
-                    "type": "string"
+                    "type": "int"
                 }
             }
         },

@@ -2,7 +2,7 @@ version: "2"
 
 services:
     app:
-        image: php:8.1-apache
+        image: php:8-fpm-buster
         build:
             context: ./docker/app
             dockerfile: Dockerfile
@@ -12,16 +12,30 @@ services:
         working_dir: /var/www/html
         volumes:
             - ./:/var/www/html
-            - ./docker/apache2/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
+            - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
         networks:
             - net
         # ports:
         #     - '80:80'
 
+    webserver:
+        image: nginx:alpine
+#        restart: unless-stopped
+#        tty: true
+#        ports:
+#            - "80:80"
+#            - "443:443"
+        volumes:
+            - ./:/var/www/html
+            - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+        networks:
+            - net
+
     db:
         image: mysql:8.0.30
         volumes:
             - ./docker/mysql/data:/var/lib/mysql
+            - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
         environment:
             MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
             MYSQL_DATABASE: ${DB_DATABASE}
