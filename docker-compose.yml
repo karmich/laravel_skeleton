@@ -1,0 +1,48 @@
+version: "2"
+
+services:
+    app:
+        image: php:8-fpm-buster
+        build:
+            context: ./docker/app
+            dockerfile: Dockerfile
+        working_dir: /var/www/html
+        volumes:
+            - ./:/var/www/html
+            - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+        networks:
+            - net
+        # ports:
+        #     - '80:80'
+
+    webserver:
+        image: nginx:alpine
+#        restart: unless-stopped
+#        tty: true
+#        ports:
+#            - "80:80"
+#            - "443:443"
+        volumes:
+            - ./:/var/www/html
+            - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+        networks:
+            - net
+
+    db:
+        image: mysql:8.0.30
+        volumes:
+            - ./docker/mysql/data:/var/lib/mysql
+            - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+        environment:
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_DATABASE: ${DB_DATABASE}
+        command: --sql_mode=""
+        networks:
+            - net
+        # ports:
+        #     - '3306:3306'
+        # restart: unless-stopped
+
+networks:
+    net:
+        driver: bridge

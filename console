@@ -1,0 +1,146 @@
+#!/usr/bin/env bash
+
+APP_CONTAINER_NAME=app
+
+function dc()
+{
+    docker-compose $@
+}
+
+function up()
+{
+    dc up -d
+}
+
+function down()
+{
+    dc down
+}
+
+function artisan()
+{
+    up
+    dc exec $APP_CONTAINER_NAME php artisan $@
+}
+
+function update_sources()
+{
+    git pull
+}
+
+function clear_caches()
+{
+    artisan co:cl
+    artisan ca:cl
+    artisan ro:cl
+    artisan vi:cl
+}
+
+function gen_doc()
+{
+    artisan l5:gen --all
+}
+
+function restart() {
+    dc stop $1 \
+    && dc rm -f $1 \
+    && dc up -d
+}
+
+function migrate()
+{
+    artisan migrate --force
+}
+
+function deploy()
+{
+    update_sources
+    migrate
+    clear_caches
+    gen_doc
+}
+
+function composer()
+{
+    up
+    dc exec $APP_CONTAINER_NAME composer $@
+}
+
+function help()
+{
+    echo "up: Starts the app"
+    echo "down: Stops the app"
+    echo "deploy: updates the app"
+    echo "dc [PARAMS]: Executes docker-compose command"
+    echo "artisan [PARAMS]: Executes artisan command"
+    echo "composer [PARAMS]: Executes composer command"
+    echo "migrate: Executes artisan migrations"
+    echo "cc | clear_caches : Clears all caches"
+    echo "gd | gen_doc: Generates swagger documentation"
+    echo "-r | restart <CONTAINER>: Restarts container"
+    echo "-h | --help: Prints this help"
+}
+
+function main()
+{
+    ARG=$1
+
+    case $ARG in
+
+        up )
+            up
+        ;;
+
+        down )
+            down
+        ;;
+
+        deploy )
+            deploy
+        ;;
+
+        dc )
+            shift
+            dc $@
+        ;;
+
+        artisan )
+            shift
+            artisan $@
+        ;;
+
+        composer )
+            shift
+            composer $@
+        ;;
+
+        migrate )
+            migrate
+        ;;
+
+        cc | clear_caches )
+            clear_caches
+        ;;
+
+        gd | gen_doc )
+            gen_doc
+        ;;
+
+        -r | restart )
+            shift
+            restart $@
+        ;;
+
+        -h | --help )
+            help
+        ;;
+
+        * )
+            help
+        ;;
+
+    esac
+}
+
+main $@
+exit $?
