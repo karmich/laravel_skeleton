@@ -14,4 +14,9 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-/docker-compose.override.yml
+/docker/app/Dockerfile
+/docker/mysql/my.cnf
+/docker/nginx/conf.d/app.conf
+/docker/php/local.ini
+/docker-compose.yml
+local.ini.example
