@@ -12,16 +12,16 @@ services:
             - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
         networks:
             - net
-        # ports:
-        #     - '80:80'
+        ports:
+            - '80:80'
 
     webserver:
         image: nginx:alpine
-#        restart: unless-stopped
-#        tty: true
-#        ports:
-#            - "80:80"
-#            - "443:443"
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "80:80"
+            - "443:443"
         volumes:
             - ./:/var/www/html
             - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
@@ -39,9 +39,9 @@ services:
         command: --sql_mode=""
         networks:
             - net
-        # ports:
-        #     - '3306:3306'
-        # restart: unless-stopped
+        ports:
+            - '3306:3306'
+        restart: unless-stopped
 
 networks:
     net:
