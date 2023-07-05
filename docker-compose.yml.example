@@ -12,8 +12,6 @@ services:
             - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
         networks:
             - net
-        ports:
-            - '80:80'
 
     webserver:
         image: nginx:alpine
