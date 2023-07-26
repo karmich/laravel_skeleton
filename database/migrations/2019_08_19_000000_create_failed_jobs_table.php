@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('app_failed_jobs', function (Blueprint $table) {
+        Schema::create('system__app_failed_jobs', function (Blueprint $table) {
             $table->id();
             $table->string('uuid')->unique();
             $table->text('connection');
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('app_failed_jobs');
+        Schema::dropIfExists('system__app_failed_jobs');
     }
 };

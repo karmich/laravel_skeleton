@@ -34,4 +34,6 @@ class User extends Authenticatable
         'password',
         'api_token'
     ];
+
+    protected $table = 'users__users';
 }
