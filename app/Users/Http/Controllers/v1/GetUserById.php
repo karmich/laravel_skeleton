@@ -3,7 +3,7 @@
 namespace App\Users\Http\Controllers\v1;
 
 use App\Common\Http\Responses\JsonResponse;
-use App\Users\Models\User;
+use Domain\Users\Actions\GetUserByIdAction;
 
 /**
  * @OA\Get(
@@ -24,8 +24,8 @@ use App\Users\Models\User;
  */
 class GetUserById{
 
-    public function __invoke($id): JsonResponse
+    public function __invoke($id, GetUserByIdAction $getUserByIdAction): JsonResponse
     {
-        return new JsonResponse(['users' => User::query()->findOrFail($id)]);
+        return new JsonResponse(['users' => $getUserByIdAction($id)]);
     }
 }

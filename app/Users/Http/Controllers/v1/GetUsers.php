@@ -3,7 +3,7 @@
 namespace App\Users\Http\Controllers\v1;
 
 use App\Common\Http\Responses\JsonResponse;
-use App\Users\Models\User;
+use Domain\Users\Actions\GetUsersAction;
 
 /**
  * @OA\Get(
@@ -23,9 +23,9 @@ use App\Users\Models\User;
  */
 class GetUsers{
 
-    public function __invoke(): JsonResponse
+    public function __invoke(GetUsersAction $getUsersAction): JsonResponse
     {
-        return new JsonResponse(['user' => User::query()->get()]);
+        return new JsonResponse(['user' => $getUsersAction()]);
     }
 
 }
