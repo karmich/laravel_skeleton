@@ -27,6 +27,7 @@
             "App\\": "app/",
             "OpenAPI\\": "OpenAPI/",
             "Kernels\\": "kernels/",
+            "Domain\\": "src/Domain/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }
