@@ -3,11 +3,12 @@
 namespace Domain\Users\Actions;
 
 use App\Users\Models\User;
+use Domain\Users\Repositories\UserRepository;
 
 class GetUserByIdAction
 {
-    public function __invoke($userId)
+    public function __invoke($userId, UserRepository $userRepository): User|null
     {
-        return User::query()->find($userId);
+        return $userRepository->getUser($userId);
     }
 }
