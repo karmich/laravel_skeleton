@@ -7,8 +7,14 @@ use Domain\Users\Repositories\UserRepository;
 
 class GetUserByIdAction
 {
-    public function __invoke($userId, UserRepository $userRepository): User|null
+    public function __construct(
+        public UserRepository $userRepository
+    )
     {
-        return $userRepository->getUser($userId);
+    }
+
+    public function __invoke($userId): User|null
+    {
+        return $this->userRepository->getUser($userId);
     }
 }

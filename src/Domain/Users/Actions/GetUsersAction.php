@@ -7,8 +7,14 @@ use Illuminate\Database\Eloquent\Collection;
 
 class GetUsersAction
 {
-    public function __invoke(UserRepository $userRepository): Collection
+    public function __construct(
+        public UserRepository $userRepository
+    )
     {
-        return $userRepository->getUsers();
+    }
+
+    public function __invoke(): Collection
+    {
+        return $this->userRepository->getUsers();
     }
 }
