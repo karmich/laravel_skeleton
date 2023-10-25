@@ -4,28 +4,26 @@ namespace App\Users\Http\Controllers\v1;
 
 use App\Common\Http\Responses\JsonResponse;
 use Domain\Users\Actions\GetUsersAction;
+use OpenApi\Attributes as OA;
 
-/**
- * @OA\Get(
- *     path="/api/v1/users",
- *     tags={"Users"},
- *     security={{"Bearer":{}}},
- *     @OA\Response(
- *       response="200",
- *       description="Success",
- *       @OA\JsonContent(
- *         @OA\Property(property="status", type="string", example="success"),
- *         @OA\Property(property="message", type="string", example="ok"),
- *         @OA\Property(property="data", type="array", @OA\Items(ref="#/components/schemas/user"))
- *       ),
- *     )
- * )
- */
-class GetUsers{
-
+#[OA\Get(
+    path: "/api/v1/users",
+    security: [["Bearer" => []]],
+    tags: ["Users"],
+)]
+#[OA\Response(
+    response: 200,
+    description: "Success",
+    content: new OA\JsonContent(properties: [
+        new OA\Property('status', type: 'string', example: 'success'),
+        new OA\Property('message', type: 'string', example: 'ok'),
+        new OA\Property('data', ref: "#/components/schemas/user"),
+    ])
+)]
+class GetUsers
+{
     public function __invoke(GetUsersAction $getUsersAction): JsonResponse
     {
         return new JsonResponse(['user' => $getUsersAction()]);
     }
-
 }

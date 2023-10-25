@@ -74,10 +74,7 @@
                                             "example": "ok"
                                         },
                                         "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/user"
-                                            }
+                                            "$ref": "#/components/schemas/user"
                                         }
                                     },
                                     "type": "object"
