@@ -28,6 +28,6 @@ class GetUserById
 {
     public function __invoke($id, GetUserByIdAction $getUserByIdAction): JsonResponse
     {
-        return new JsonResponse(['users' => $getUserByIdAction($id)]);
+        return new JsonResponse(['user' => $getUserByIdAction($id)]);
     }
 }
