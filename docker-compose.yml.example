@@ -2,7 +2,7 @@ version: "2"
 
 services:
     app:
-        image: php:8-fpm-buster
+        image: php:8.1-fpm-bookworm
         build:
             context: ./docker/app
             dockerfile: Dockerfile
