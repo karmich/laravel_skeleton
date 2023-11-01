@@ -1,11 +1,11 @@
 <?php
 
-namespace Domain\Users\Actions;
+namespace Domain\Users\UseCases;
 
-use Domain\Users\Repositories\UserRepository;
 use Illuminate\Database\Eloquent\Collection;
+use Infrastructure\Repositories\UserRepository;
 
-class GetUsersAction
+class GetUsersUseCase
 {
     public function __construct(
         public UserRepository $userRepository
@@ -13,7 +13,7 @@ class GetUsersAction
     {
     }
 
-    public function __invoke(): Collection
+    public function __invoke(): Collection|array
     {
         return $this->userRepository->getUsers();
     }

@@ -3,17 +3,13 @@
 namespace App\Users\Http\Controllers\v1;
 
 use App\Common\Http\Responses\JsonResponse;
-use Domain\Users\Actions\GetUserByIdAction;
-
+use Domain\Users\UseCases\GetUsersUseCase;
 use OpenApi\Attributes as OA;
 
 #[OA\Get(
-    path: "/api/v1/users/{id}",
+    path: "/api/v1/users",
     security: [["Bearer" => []]],
     tags: ["Users"],
-    parameters: [
-        new OA\Parameter(ref: "#/components/parameters/id_in_path")
-    ]
 )]
 #[OA\Response(
     response: 200,
@@ -24,10 +20,10 @@ use OpenApi\Attributes as OA;
         new OA\Property('data', ref: "#/components/schemas/user"),
     ])
 )]
-class GetUserById
+class GetUsersController
 {
-    public function __invoke($id, GetUserByIdAction $getUserByIdAction): JsonResponse
+    public function __invoke(GetUsersUseCase $getUsersUseCase): JsonResponse
     {
-        return new JsonResponse(['user' => $getUserByIdAction($id)]);
+        return new JsonResponse(['users' => $getUsersUseCase()]);
     }
 }

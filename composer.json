@@ -28,6 +28,7 @@
             "OpenAPI\\": "OpenAPI/",
             "Kernels\\": "kernels/",
             "Domain\\": "src/Domain/",
+            "Infrastructure\\": "src/Infrastructure/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }
