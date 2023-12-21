@@ -27,6 +27,8 @@
             "App\\": "app/",
             "OpenAPI\\": "OpenAPI/",
             "Kernels\\": "kernels/",
+            "Exceptions\\": "src/Exceptions/",
+            "Http\\": "src/Http/",
             "Domain\\": "src/Domain/",
             "Infrastructure\\": "src/Infrastructure/",
             "Database\\Factories\\": "database/factories/",
