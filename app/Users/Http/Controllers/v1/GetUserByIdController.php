@@ -2,8 +2,7 @@
 
 namespace App\Users\Http\Controllers\v1;
 
-use App\Common\Http\Responses\JsonResponse;
-
+use App\Users\Http\JsonResources\UserResource;
 use Domain\Users\UseCases\GetUserByIdUseCase;
 use OpenApi\Attributes as OA;
 
@@ -26,8 +25,8 @@ use OpenApi\Attributes as OA;
 )]
 class GetUserByIdController
 {
-    public function __invoke($id, GetUserByIdUseCase $getUserByIdUseCase): JsonResponse
+    public function __invoke($id, GetUserByIdUseCase $getUserByIdUseCase)
     {
-        return new JsonResponse(['user' => $getUserByIdUseCase($id)]);
+        return new UserResource($getUserByIdUseCase($id));
     }
 }
