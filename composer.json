@@ -26,9 +26,9 @@
         "psr-4": {
             "App\\": "app/",
             "OpenAPI\\": "OpenAPI/",
-            "Kernels\\": "kernels/",
             "Exceptions\\": "src/Exceptions/",
             "Http\\": "src/Http/",
+            "Kernels\\": "src/Kernels/",
             "Domain\\": "src/Domain/",
             "Infrastructure\\": "src/Infrastructure/",
             "Database\\Factories\\": "database/factories/",
