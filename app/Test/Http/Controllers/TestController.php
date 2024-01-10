@@ -3,10 +3,11 @@
 namespace App\Test\Http\Controllers;
 
 use Http\Requests\BaseRequest;
+use Illuminate\Http\JsonResponse;
 
 class TestController
 {
-    public function __invoke(BaseRequest $request)
+    public function __invoke(BaseRequest $request): JsonResponse
     {
         $data = $request->asStdClass();
 
