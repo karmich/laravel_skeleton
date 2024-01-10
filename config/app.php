@@ -187,6 +187,7 @@ return [
          */
 
         App\Users\Providers\RouteServiceProvider::class,
+        App\Test\Providers\RouteServiceProvider::class,
     ],
 
     /*

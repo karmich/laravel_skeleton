@@ -20,3 +20,4 @@ yarn-error.log
 /docker/php/local.ini
 /docker-compose.yml
 /docker-compose.override.yml
+/docker/php/xdebug.ini
