@@ -15,4 +15,9 @@ class BaseRequest extends Request
     {
         return true;
     }
+
+    public function asStdClass()
+    {
+        return json_decode($this->getContent(), false);
+    }
 }

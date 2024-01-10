@@ -2,13 +2,13 @@
 
 namespace App\Test\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Http\Requests\BaseRequest;
 
 class TestController
 {
-    public function __invoke(Request $request)
+    public function __invoke(BaseRequest $request)
     {
-        $data = $request->all();
+        $data = $request->asStdClass();
 
         return response()->json([
             'echo' => $data
