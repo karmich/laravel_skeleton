@@ -1,6 +1,6 @@
 <?php
 
-namespace Infrastructure\Models\User;
+namespace Models\User;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Carbon\Carbon;
@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
+use Models\User\User\UserAttributesTrait;
+use Models\User\User\UserQueriesTrait;
+use Models\User\User\UserRelationsTrait;
+use Models\User\User\UserScopesTrait;
 
 /**
  * @property int $id

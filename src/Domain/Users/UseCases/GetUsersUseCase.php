@@ -3,7 +3,7 @@
 namespace Domain\Users\UseCases;
 
 use Illuminate\Database\Eloquent\Collection;
-use Infrastructure\Models\User\User;
+use Models\User\User;
 
 class GetUsersUseCase
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Infrastructure\Models\User;
+namespace Models\User\User;
 
-use Infrastructure\Models\User\Queries\GetById;
+use Models\User\User\Queries\GetById;
 
 trait UserQueriesTrait
 {

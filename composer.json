@@ -31,7 +31,7 @@
             "Http\\": "src/Http/",
             "Kernels\\": "src/Kernels/",
             "Domain\\": "src/Domain/",
-            "Infrastructure\\": "src/Infrastructure/",
+            "Models\\": "src/Models/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }

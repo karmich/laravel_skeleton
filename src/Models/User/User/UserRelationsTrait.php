@@ -1,6 +1,6 @@
 <?php
 
-namespace Infrastructure\Models\User;
+namespace Models\User\User;
 
 trait UserRelationsTrait
 {

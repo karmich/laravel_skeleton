@@ -1,9 +1,9 @@
 <?php
 
-namespace Infrastructure\Models\User\Queries;
+namespace Models\User\User\Queries;
 
 use Illuminate\Database\Eloquent\Model;
-use Infrastructure\Models\User\User;
+use Models\User\User;
 
 class GetById
 {
