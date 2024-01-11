@@ -86,7 +86,7 @@ function help()
 
 function main()
 {
-    ARG=$1
+    ARG="$1"
 
     case $ARG in
 
