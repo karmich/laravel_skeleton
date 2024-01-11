@@ -18,7 +18,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/id_in_path"
+                        "$ref": "#/components/parameters/id_in_path_required"
                     }
                 ],
                 "responses": {
@@ -115,7 +115,7 @@
             }
         },
         "parameters": {
-            "id_in_path": {
+            "id_in_path_required": {
                 "name": "id",
                 "in": "path",
                 "required": true

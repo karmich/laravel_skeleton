@@ -11,7 +11,7 @@ use OpenApi\Attributes as OA;
     security: [["Bearer" => []]],
     tags: ["Users"],
     parameters: [
-        new OA\Parameter(ref: "#/components/parameters/id_in_path")
+        new OA\Parameter(ref: "#/components/parameters/id_in_path_required")
     ]
 )]
 #[OA\Response(
