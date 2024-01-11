@@ -39,7 +39,7 @@ return [
                  * Absolute paths to directory containing the swagger annotations are stored.
                 */
                 'annotations' => [
-                    base_path('OpenAPI'),
+                    base_path('src/OpenAPI'),
                     base_path('app'),
                 ],
 
