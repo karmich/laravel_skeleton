@@ -43,14 +43,11 @@ function gen_doc()
 function restart() {
     local SERVICE="$1"
 
-    if [ -z "$SERVICE" ]
-    then
-        return 1
-    fi
+    [ -z "$SERVICE" ] && return
 
     dc stop "$SERVICE" \
     && dc rm -f "$SERVICE" \
-    && up
+    && dc up -d "$SERVICE"
 }
 
 function migrate()
