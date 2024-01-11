@@ -1,0 +1,151 @@
+#!/usr/bin/env bash
+
+function dc()
+{
+    docker-compose "$@"
+}
+
+function up()
+{
+    dc up -d
+}
+
+function down()
+{
+    dc down
+}
+
+function artisan()
+{
+    up
+    dc exec app php artisan "$@"
+}
+
+function update_sources()
+{
+    git pull
+}
+
+function clear_caches()
+{
+    artisan config:clear
+    artisan cache:clear
+    artisan route:clear
+    artisan view:clear
+}
+
+function gen_doc()
+{
+    artisan l5:gen default
+}
+
+function restart() {
+    local SERVICE="$1"
+
+    if [ -z "$SERVICE" ]
+    then
+        return 1
+    fi
+
+    dc stop "$SERVICE" \
+    && dc rm -f "$SERVICE" \
+    && up
+}
+
+function migrate()
+{
+    artisan migrate --force
+}
+
+function deploy()
+{
+    update_sources
+    migrate
+    clear_caches
+    gen_doc
+}
+
+function composer()
+{
+    up
+    dc exec app composer "$@"
+}
+
+function help()
+{
+    echo "up: Starts the app"
+    echo "down: Stops the app"
+    echo "deploy: updates the app"
+    echo "dc [PARAMS]: Executes docker-compose command"
+    echo "artisan [PARAMS]: Executes artisan command"
+    echo "composer [PARAMS]: Executes composer command"
+    echo "migrate: Executes artisan migrations"
+    echo "clear_caches | cc : Clears all caches"
+    echo "gen_doc | gd: Generates swagger documentation"
+    echo "restart <CONTAINER> | -r <CONTAINER>: Restarts container"
+    echo "-h | --help: Prints this help"
+}
+
+function main()
+{
+    ARG=$1
+
+    case $ARG in
+
+        up )
+            up
+        ;;
+
+        down )
+            down
+        ;;
+
+        deploy )
+            deploy
+        ;;
+
+        dc )
+            shift
+            dc "$@"
+        ;;
+
+        artisan )
+            shift
+            artisan "$@"
+        ;;
+
+        composer )
+            shift
+            composer "$@"
+        ;;
+
+        migrate )
+            migrate
+        ;;
+
+        clear_caches | cc )
+            clear_caches
+        ;;
+
+        gen_doc | gd )
+            gen_doc
+        ;;
+
+        restart | -r )
+            shift
+            restart "$@"
+        ;;
+
+        --help | -h )
+            help
+        ;;
+
+        * )
+            help
+        ;;
+
+    esac
+}
+
+main "$@"
+exit 0
