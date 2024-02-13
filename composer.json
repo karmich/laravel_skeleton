@@ -32,6 +32,7 @@
             "Kernels\\": "src/Kernels/",
             "Domain\\": "src/Domain/",
             "Models\\": "src/Models/",
+            "Extensions\\": "src/Extensions/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }
