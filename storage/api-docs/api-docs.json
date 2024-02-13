@@ -11,11 +11,30 @@
         }
     ],
     "paths": {
+        "/api/v1/test": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "operationId": "8c23d7b99b957aee01d70e3ee5f9267c",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/api/v1/users/{id}": {
             "get": {
                 "tags": [
                     "Users"
                 ],
+                "operationId": "2f5fa03daa0ad56bbcd9c7ff1db0a6f1",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/id_in_path_required"
@@ -58,6 +77,7 @@
                 "tags": [
                     "Users"
                 ],
+                "operationId": "d036f718fe50b84b62a5a548793f4456",
                 "responses": {
                     "200": {
                         "description": "Success",

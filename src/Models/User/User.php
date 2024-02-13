@@ -4,6 +4,7 @@ namespace Models\User;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Carbon\Carbon;
+use Extensions\Eloquent\Relationships\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -24,6 +25,7 @@ use Models\User\User\UserScopesTrait;
  * @property string $api_token
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property-read Phone|null $ph
  */
 class User extends Authenticatable
 {
@@ -46,5 +48,10 @@ class User extends Authenticatable
         static::creating(function(User $user){
             $user->api_token = Str::uuid();
         });
+    }
+
+    public function ph(): HasOne
+    {
+        return new HasOne(Phone::query(), $this, 'users_phones', 'user_id', 'phone_id');
     }
 }
